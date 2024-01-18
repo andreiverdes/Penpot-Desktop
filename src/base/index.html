@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>Penpot Desktop</title>
+        <link rel="stylesheet" href="./styles/index.css"/>
+        <link rel="stylesheet" href="../../node_modules/@shoelace-style/shoelace/cdn/themes/dark.css" onload="document.documentElement.classList.add('sl-theme-dark')"/>
+        <script type="module" src="../../node_modules/@shoelace-style/shoelace/cdn/shoelace.js"></script>
+        <script src="../../node_modules/electron-tabs/dist/electron-tabs.js"></script>
+        <script src="./scripts/electron-tabs.js"></script>
+        <script src="./scripts/instance.js"></script>
+        <script src="./scripts/toggles.js"></script>
+    </head> 
+    <body onload="InstanceGet()">
+        <drag></drag>
+        <sl-include src="./components/titlebar.html"></sl-include>
+        <sl-include src="./components/splash.html"></sl-include>
+        <sl-include src="./components/tabs.html"></sl-include>
+        <sl-include src="./components/settings.html"></sl-include>
+
+        <!-- Alerts-->
+        <sl-include class="alert-modal" src="./components/alerts/no-instance.html"></sl-include>
+    </body>
+</html>

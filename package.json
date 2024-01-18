@@ -1,0 +1,50 @@
+{
+  "name": "penpot-desktop",
+  "version": "0.3.0",
+  "author": "SudoVanilla",
+  "license": "AGPL-3.0-or-later",
+  "trustedDependencies": [
+    "electron"
+  ],
+  "main": "src/process/index.js",
+  "homepage": "https://sudovanilla.com/code/Korbs/Penpot-Desktop/",
+  "keywords": [
+    "design",
+    "prototyping",
+    "mockups",
+    "graphics"
+  ],
+  "bugs": {
+    "url": "https://sudovanilla.com/code/Korbs/Penpot-Desktop/issues",
+    "email": "support@sudovanilla.com"
+  },
+  "funding": [
+    {
+      "type": "individual",
+      "url": "https://sudovanilla.com/donate/"
+    }
+  ],
+  "scripts": {
+    "start": "npm run dev",
+    "build": "electron-builder --config build/electron-builder.yml",
+    "build:arm": "electron-builder --config build/electron-builder.yml --arm64",
+    "dev": "concurrently --kill-others \"npm run scss:app\" \"run-electron .\"",
+    "scss:app": "sass -q --watch src/base/styles/index.scss:src/base/styles/index.css --style=compressed --no-source-map"
+  },
+  "dependencies": {
+    "@shoelace-style/shoelace": "^2.12.0",
+    "concurrently": "^8.2.0",
+    "electron-is-dev": "^3.0.1",
+    "electron-re": "^1.3.0",
+    "electron-tabs": "^1.0.1",
+    "electron-updater": "^6.1.1",
+    "electron-window-state": "^5.0.3",
+    "run-electron": "^1.0.0",
+    "sass": "^1.63.6"
+  },
+  "devDependencies": {
+    "electron": "^28.1.3",
+    "electron-builder": "^24.9.1"
+  },
+  "packageManager": "yarn@4.0.2"
+}
