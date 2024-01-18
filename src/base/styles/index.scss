@@ -1,5 +1,6 @@
 body {
     background: #1d1f20;
+    font-family: arial;
 }
 
 .titlebar {
@@ -12,6 +13,9 @@ body {
     cursor: default;
     z-index: 5;
     app-region: no-drag;
+    .linux-titlebar {
+        display: none;
+    }
     button {
         width: 32px;
         height: 32px;
@@ -61,6 +65,7 @@ drag {
     border: 1px hsl(240 4.6% 22%) solid;
     margin: 6px;
     min-width: 250px;
+    width: 300px;
     transition: 1s all;
     div:nth-child(1) > div.settings-section-header {
         border-radius: 4px 4px 0px 0px;
