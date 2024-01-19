@@ -13,6 +13,7 @@ body {
     cursor: default;
     z-index: 5;
     app-region: no-drag;
+    display: flex;
     .linux-titlebar {
         display: none;
     }

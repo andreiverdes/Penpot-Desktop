@@ -34,6 +34,12 @@ module.exports = {
                     click: () => {
                         mainWindow.webContents.executeJavaScript(`document.querySelector("tab-group").shadowRoot.querySelector("div > nav > div.tabs > div.tab.visible.active > span.tab-close > button").click()`)
                     }
+                },
+                { type: 'separator' },
+                {
+                    label: "Quit",
+                    accelerator: "CmdOrCtrl+Q",
+                    click: () => {app.quit()}
                 }
             ]
             },
@@ -81,7 +87,7 @@ module.exports = {
                 accelerator: 'CmdOrCtrl+Shift+R',
                 click: async () => {
                     mainWindow.reload()
-                    setTimeout(() => {Platform.CSS()}, 1000)
+                    setTimeout(() => {Platform.CSS()}, 2000)
                 }
                 },
                 { role: 'toggleDevTools' },
