@@ -1,36 +1,71 @@
 // Set the title of the tab name
-/// Instead of the tab name being "PAGE_NAME - Penpot", this script will remove the " - Penpot" portion.
-function setTitleDash() {document.title = "Penpot Dashboard"}
-function setTitle() {document.title = document.querySelector("#workspace > header > div.left-area > div.menu-section > div.project-tree > span:nth-child(2)").innerText}
+/// Instead of the tab name being "PROJECT_NAME - Penpot", this script will remove the " - Penpot" portion.
+function SetTitleToDash() {
+    document.title = "Dashboard"
+}
 
-function titleModified() {
-    if (document.querySelector(".dashboard-layout") !== null) {
-        setTitleDash() // Set title to "Penpot Dashboard"
-    }
-    if (document.querySelector("#workspace") !== null) {
-        setTitle() // Set title to only project name
-    }
-    else {}
+function SetTitleToProject() {
+    document.title = document.querySelector(".main_ui_workspace_left_header__file-name").innerText
 }
 
 
-/// Credit: https://stackoverflow.com/a/2499119/15103862
+function _waitForElement(selector, delay = 50, tries = 100) {
+    const element = document.querySelector(selector);
+
+    if (!window[`__${selector}`]) {
+        window[`__${selector}`] = 0;
+        window[`__${selector}__delay`] = delay;
+        window[`__${selector}__tries`] = tries;
+    }
+
+    function _search() {
+        return new Promise((resolve) => {
+            window[`__${selector}`]++;
+            setTimeout(resolve, window[`__${selector}__delay`]);
+        });
+    }
+
+    if (element === null) {
+        if (window[`__${selector}`] >= window[`__${selector}__tries`]) {
+            window[`__${selector}`] = 0;
+            return Promise.resolve(null);
+        }
+
+        return _search().then(() => _waitForElement(selector));
+    } else {
+        return Promise.resolve(element);
+    }
+}
+
+
+
+
+function UpdateTitle() {
+    if (window.location.href.indexOf("#/workspace") != -1) {
+        const start = (async () => {
+            const $el = await _waitForElement(`.main_ui_workspace_left_header__file-name`);
+            SetTitleToProject()
+        })();
+    }
+}
+
+
 window.onload = function() {
-    var titleEl = document.getElementsByTagName("title")[0]
-    var docEl = document.documentElement
+    var titleEl = document.getElementsByTagName("title")[0];
+    var docEl = document.documentElement;
 
     if (docEl && docEl.addEventListener) {
         docEl.addEventListener("DOMSubtreeModified", function(evt) {
-            var t = evt.target
+            var t = evt.target;
             if (t === titleEl || (t.parentNode && t.parentNode === titleEl)) {
-                titleModified()
+                UpdateTitle()
             }
-        }, false)
+        }, false);
     } else {
         document.onpropertychange = function() {
             if (window.event.propertyName == "title") {
-                titleModified()
+                UpdateTitle()
             }
-        }
+        };
     }
-}
+};
