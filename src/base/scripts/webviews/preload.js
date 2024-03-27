@@ -10,7 +10,7 @@ function SetTitleToProject() {
 
 
 function _waitForElement(selector, delay = 50, tries = 100) {
-    const element = document.querySelector(selector);
+    const AQ1 = document.querySelector(selector);
 
     if (!window[`__${selector}`]) {
         window[`__${selector}`] = 0;
@@ -18,22 +18,22 @@ function _waitForElement(selector, delay = 50, tries = 100) {
         window[`__${selector}__tries`] = tries;
     }
 
-    function _search() {
+    function ElementSearchTitle() {
         return new Promise((resolve) => {
             window[`__${selector}`]++;
             setTimeout(resolve, window[`__${selector}__delay`]);
         });
     }
 
-    if (element === null) {
-        if (window[`__${selector}`] >= window[`__${selector}__tries`]) {
+    if (AQ1 === null) {
+        if (AQ1[`__${selector}`] >= window[`__${selector}__tries`]) {
             window[`__${selector}`] = 0;
             return Promise.resolve(null);
         }
 
-        return _search().then(() => _waitForElement(selector));
+        return ElementSearchTitle().then(() => _waitForElement(selector));
     } else {
-        return Promise.resolve(element);
+        return Promise.resolve(AQ1);
     }
 }
 
@@ -47,6 +47,9 @@ function UpdateTitle() {
             SetTitleToProject()
         })();
     }
+    else {
+        SetTitleToDash()
+    }
 }
 
 
@@ -58,13 +61,17 @@ window.onload = function() {
         docEl.addEventListener("DOMSubtreeModified", function(evt) {
             var t = evt.target;
             if (t === titleEl || (t.parentNode && t.parentNode === titleEl)) {
-                UpdateTitle()
+                setTimeout(() => {
+                    UpdateTitle()
+                }, 1200);
             }
         }, false);
     } else {
         document.onpropertychange = function() {
             if (window.event.propertyName == "title") {
-                UpdateTitle()
+                setTimeout(() => {
+                    UpdateTitle()
+                }, 1200);
             }
         };
     }
