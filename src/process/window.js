@@ -46,12 +46,16 @@ module.exports = {
     ipcMain.on('UnmaximizeWindow', () => {mainWindow.restore()})
     ipcMain.on('MinimizeWindow', () => {mainWindow.minimize()})
 
-    // Move Tabs when entering or existing fullscreen on macOS
     if (process.platform === 'darwin') {
+      // Move Tabs when entering or existing fullscreen on macOS
       mainWindow.on('enter-full-screen', (e, cmd) => {mainWindow.webContents.executeJavaScript(`document.querySelector("tab-group").shadowRoot.querySelector("nav").style.left = '0px'`)})
       mainWindow.on('leave-full-screen', (e, cmd) => {mainWindow.webContents.executeJavaScript(`document.querySelector("tab-group").shadowRoot.querySelector("nav").style.left = '80px'`)})
+      // Fade Top Bar if the end-user leaves the window on macOS
+      mainWindow.on('blur', (e, cmd) => {mainWindow.webContents.executeJavaScript(`document.querySelector("body > sl-include:nth-child(4) > tab-group").shadowRoot.querySelector("div > nav").style.opacity = '0.5'`)})
+      mainWindow.on('focus', (e, cmd) => {mainWindow.webContents.executeJavaScript(`document.querySelector("body > sl-include:nth-child(4) > tab-group").shadowRoot.querySelector("div > nav").style.opacity = '1'`)})
     }
 
+    
     // Other Functions
     mainWindowState.manage(mainWindow)
     Menu.MainMenu()
