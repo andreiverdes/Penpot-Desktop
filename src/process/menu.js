@@ -79,7 +79,6 @@ module.exports = {
                 accelerator: 'CmdOrCtrl+R',
                 click: async () => {
                     mainWindow.webContents.executeJavaScript(`document.querySelector("tab-group").shadowRoot.querySelector("webview.visible").reload()`)
-                    setTimeout(() => {Platform.CSS()}, 1000)
                 }
                 },
                 {
@@ -87,7 +86,7 @@ module.exports = {
                 accelerator: 'CmdOrCtrl+Shift+R',
                 click: async () => {
                     mainWindow.reload()
-                    setTimeout(() => {Platform.CSS()}, 2000)
+                    setTimeout(() => {Platform.CSS()}, 1000)
                 }
                 },
                 { role: 'toggleDevTools' },

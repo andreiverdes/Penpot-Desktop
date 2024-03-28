@@ -1,4 +1,4 @@
-const {app, BrowserWindow, ipcMain, ipcRenderer} = require('electron')
+const {app, BrowserWindow, ipcMain, ipcRenderer, shell} = require('electron')
 const windowStateKeeper = require('electron-window-state')
 const path = require('path')
 
@@ -7,7 +7,10 @@ const Platform = require('./platform')
 
 module.exports = {
   create: function () {
-    let mainWindowState = windowStateKeeper({defaultWidth: 1400,defaultHeight: 900})
+    let mainWindowState = windowStateKeeper({ // Remember the positiona and size of the window
+      defaultWidth: 1400,
+      defaultHeight: 900
+    })
     mainWindow = new BrowserWindow({
       // Size
       x: mainWindowState.x,
@@ -19,7 +22,7 @@ module.exports = {
       // Theme
       darkTheme: true,
       transparent: global.transparent,
-      vibrancy: "header",
+      vibrancy: "sidebar",
       // Titlebar
       titleBarStyle: 'hidden',
       trafficLightPosition: { x: 16, y: 12 }, // for macOS
@@ -45,6 +48,8 @@ module.exports = {
     ipcMain.on('MaximizeWindow', () => {mainWindow.maximize()})
     ipcMain.on('UnmaximizeWindow', () => {mainWindow.restore()})
     ipcMain.on('MinimizeWindow', () => {mainWindow.minimize()})
+    ipcMain.on('OpenHelp', () => {shell.openExternal('https://sudovanilla.com/docs/penpot-desktop/')})
+    ipcMain.on('OpenOffline', () => {shell.openExternal('https://sudovanilla.com/docs/penpot-desktop/features/offline-use/')})
 
     if (process.platform === 'darwin') {
       // Move Tabs when entering or existing fullscreen on macOS
@@ -54,7 +59,6 @@ module.exports = {
       mainWindow.on('blur', (e, cmd) => {mainWindow.webContents.executeJavaScript(`document.querySelector("body > sl-include:nth-child(4) > tab-group").shadowRoot.querySelector("div > nav").style.opacity = '0.5'`)})
       mainWindow.on('focus', (e, cmd) => {mainWindow.webContents.executeJavaScript(`document.querySelector("body > sl-include:nth-child(4) > tab-group").shadowRoot.querySelector("div > nav").style.opacity = '1'`)})
     }
-
     
     // Other Functions
     mainWindowState.manage(mainWindow)

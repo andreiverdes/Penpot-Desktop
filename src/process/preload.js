@@ -6,7 +6,9 @@ contextBridge.exposeInMainWorld( "api", { send: (channel, data) => {let validCha
   "ReloadApp",
   "MaximizeWindow",
   "UnmaximizeWindow",
-  "MinimizeWindow"
+  "MinimizeWindow",
+  "OpenHelp",
+  "OpenOffline"
 ]
 if (validChannels.includes(channel)) {ipcRenderer.send(channel, data)}}})
 

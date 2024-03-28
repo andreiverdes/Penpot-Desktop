@@ -29,12 +29,14 @@ if (!localStorage.getItem("firstTime")) {
 setTimeout(() => {
     document.querySelector("#InstanceField").value = localStorage.getItem('Instance')
 }, 0o500);
-// setTimeout(() => {
-//   if (document.querySelector("body > tab-group").shadowRoot.querySelector("div > div > webview").src === '') {
-//     console.log('You need to set an instance.')
-//     document.querySelector("body > titlebar > div.actions > div > button:nth-child(2)").click()
-//     document.querySelector(".tdm-warnings").style.display = 'inherit'
-//   } else {
-//     console.log('An instance is set.')
-//   }
-// }, 1500);
+setTimeout(() => {
+  if (document.querySelector("tab-group").shadowRoot.querySelector("div > div > webview").src === '') {
+    document.querySelector("tab-group").shadowRoot.querySelector("div > div > webview").style.opacity = '0'
+    document.querySelector("tab-group").shadowRoot.querySelector("div > nav").style.opacity = '0'
+    console.log('You need to set an instance.')
+    document.querySelector("body > titlebar > div.actions > div > button:nth-child(2)").click()
+    document.querySelector(".tdm-warnings").style.display = 'inherit'
+  } else {
+    console.log('An instance is set.')
+  }
+}, 1500);
