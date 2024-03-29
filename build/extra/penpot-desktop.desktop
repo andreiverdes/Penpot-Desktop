@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Penpot Desktop
+Exec=/usr/local/bin/penpot-desktop.AppImage %U
+Terminal=false
+Type=Application
+Icon=penpot-desktop
+StartupWMClass=Penpot Desktop
+Comment=A Desktop-Like Experience
+Categories=Graphics;

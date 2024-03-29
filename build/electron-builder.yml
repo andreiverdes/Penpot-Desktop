@@ -1,0 +1,54 @@
+productName: "Penpot Desktop"
+appId: "com.sudovanilla.penpot"
+asar: true
+
+# Update Server
+publish:
+  provider: "generic"
+  url: "https://sudovanilla.com/distribute/applications/penpot-desktop/latest/"
+
+# macOS
+mac:
+  darkModeSupport: true
+  category: "public.app-category.graphics-design"
+  minimumSystemVersion: 10.13.6
+  target:
+    - "dmg" # Installer
+    - "zip" # Required for auto updater
+
+dmg:
+  sign: true
+
+# Windows
+win:
+  target:
+    - "nsis" # Installer
+
+nsis:
+  shortcutName: "Penpot Desktop"
+  artifactName: "Penpot Desktop - Setup.exe"
+  oneClick: false
+  displayLanguageSelector: true
+  allowElevation: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: false
+  deleteAppDataOnUninstall: true
+
+# Linux
+linux:
+  category: Graphics
+  maintainer: "com.sudovanilla.penpot"
+  vendor: "SudoVanilla"
+  description: "A Desktop-Like Experience"
+  icon: "build/icon.png"
+  target:
+    # - deb # Debian/Ubuntu
+    # - rpm # RHEL/Fedora
+    # - freebsd
+    # - pacman # For Arch
+    - AppImage
+    # - snap
+
+snap:
+  allowNativeWayland: true
+  confinement: "strict"
