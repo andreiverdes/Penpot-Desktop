@@ -42,12 +42,12 @@ linux:
   description: "A Desktop-Like Experience"
   icon: "build/icon.png"
   target:
-    # - deb # Debian/Ubuntu
-    # - rpm # RHEL/Fedora
-    # - freebsd
-    # - pacman # For Arch
+    - deb # Debian/Ubuntu
+    - rpm # RHEL/Fedora
+    - freebsd
+    - pacman # For Arch
     - AppImage
-    # - snap
+    - snap
 
 snap:
   allowNativeWayland: true
