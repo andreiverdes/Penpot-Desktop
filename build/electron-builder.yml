@@ -45,7 +45,7 @@ linux:
     - deb # Debian/Ubuntu
     - rpm # RHEL/Fedora
     - freebsd
-    - pacman # For Arch
+    # - pacman # For Arch
     - AppImage
     - snap
 
