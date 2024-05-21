@@ -7,7 +7,7 @@
     "electron"
   ],
   "main": "src/process/index.js",
-  "homepage": "https://sudovanilla.com/code/Korbs/Penpot-Desktop/",
+  "homepage": "https://ark.sudovanilla.org/Korbs/Penpot-Desktop/",
   "keywords": [
     "design",
     "prototyping",
@@ -15,13 +15,13 @@
     "graphics"
   ],
   "bugs": {
-    "url": "https://sudovanilla.com/code/Korbs/Penpot-Desktop/issues",
-    "email": "support@sudovanilla.com"
+    "url": "https://ark.sudovanilla.org/Korbs/Penpot-Desktop/issues",
+    "email": "korbs@sudovanilla.org"
   },
   "funding": [
     {
       "type": "individual",
-      "url": "https://sudovanilla.com/donate/"
+      "url": "https://liberapay.com/SudoVanilla/"
     }
   ],
   "scripts": {
@@ -39,11 +39,11 @@
     "electron-tabs": "^1.0.1",
     "electron-updater": "^6.1.1",
     "electron-window-state": "^5.0.3",
-    "run-electron": "^1.0.0",
+    "run-electron": "^2.0.0",
     "sass": "^1.63.6"
   },
   "devDependencies": {
-    "electron": "^29.1.5",
+    "electron": "^30.0.6",
     "electron-builder": "^24.9.1"
   }
 }
