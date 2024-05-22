@@ -1,11 +1,11 @@
 productName: "Penpot Desktop"
-appId: "com.sudovanilla.penpot"
+appId: "org.sudovanilla.penpot"
 asar: true
 
 # Update Server
-publish:
-  provider: "generic"
-  url: "https://sudovanilla.com/distribute/applications/penpot-desktop/latest/"
+# publish:
+#   provider: "generic"
+#   url: "https://sudovanilla.org/distribute/applications/penpot-desktop/latest/"
 
 # macOS
 mac:
@@ -37,17 +37,17 @@ nsis:
 # Linux
 linux:
   category: Graphics
-  maintainer: "com.sudovanilla.penpot"
+  maintainer: "org.sudovanilla.penpot"
   vendor: "SudoVanilla"
   description: "A Desktop-Like Experience"
   icon: "build/icon.png"
   target:
     - deb # Debian/Ubuntu
     - rpm # RHEL/Fedora
-    - freebsd
-    # - pacman # For Arch
-    - AppImage
-    - snap
+    - freebsd # BSD
+    - pacman # For Arch
+    - AppImage # Universal
+    - snap # Snapcraft Store - Can't build arm version on amd64 machines(comment Snap out if you plan to)
 
 snap:
   allowNativeWayland: true
